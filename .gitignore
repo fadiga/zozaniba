@@ -1,0 +1,6 @@
+*.pyc
+*.orig
+*.sqlite
+*.db
+local_settings.py
+settings.py

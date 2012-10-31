@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Home{% endblock %}
+{% block content %}
+        
+    <ul id="menu">
+        <li ><a href="#" title="" class="current">acceuil</a></li>
+        <li ><a href="#" title="">resumé</a></li>
+        <li ><a href="#" title="">ajout-facture</a></li>
+        <li ><a href="#" title="">organisation</a></li>
+    </ul>
+
+    <div id="logo">
+        <span>{% include "_bienvenu_utilisateur.html" %}</span>
+    </div>
+    
+    <div id = "home_page">
+        <div class="span-12 append-6 prepend-6">
+            <div id="central" class="span-12 box">
+                    <p id="invite">{% trans "Choose a topic to start" %} <br>
+                <ul>
+                    <li>
+                        <a  href="{% url dashboard %} "class="button">Consulter factures</a>
+                    </li>
+                    <li>
+                        <a href="#" class="button" >Créer facture</a>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+    </div>
+ {% endblock %}

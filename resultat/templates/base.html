@@ -1,0 +1,42 @@
+{% load i18n %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Zozan | {% block title %}Zozaniba{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen" type="text/css" href="{{ STATIC_URL }}zozan.css" title="Zoza 2012" />
+    <link rel="stylesheet" media="print" type="text/css" href="{{ STATIC_URL }}print.css" />
+    <link rel="shortcut icon" href="#" />
+    {% block javascript %}{% endblock %}
+    <meta http-equiv="Content-Language" content="fr-fr" />
+    <meta name="ROBOTS" content="ALL" />
+    <meta name="Copyright" content="Zozaniba, Fadiga" />
+    <meta name="keywords" content="Zozaniba, mali, sms" />
+    <meta name="description" content="" />
+</head>
+<body>
+    <div id="page">
+        <div id="header" class="mainbox">
+            <div id="logo"></div>
+        </div>
+        {% block submenu %}{% endblock %}
+        <div id="content" class="mainbox {% block page-name %}default{% endblock %} {% block content-class %}{% endblock %}">
+            {% block pagetitle %}<h1 class="pagetitle">Système de recherche par sms</h1>{% endblock %}
+            {% block content %} {% endblock %}
+        </div>
+        <div id="footer">
+        <ul>
+            <!-- <li><a href="{% url about %}" title="À propos">À propos</a></li> -->
+        </ul>
+        <div id="top-link"><a class="anchor" href="">↑Haut</a></div>
+    </div>
+</body>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}zozan.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+</html>

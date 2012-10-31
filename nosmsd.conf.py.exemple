@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+# encoding=utf-8
+
+NOSMSD_HANDLER = 'zozaniba.zoza_sms.zozasms.handler'
+NOSMSD_GETTEXT = True
+NOSMSD_GETTEXT_LOCALE = 'fr_FR.UTF-8'
+
+NOSMSD_DATABASE = {'type': 'MySQL', 'name': 'zozasms'}
+NOSMSD_DATABASE_OPTIONS = {'user': 'zozasms', 'passwd': 'zozasms',
+                           'host': 'localhost', 'use_unicode': True}

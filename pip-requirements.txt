@@ -1,0 +1,11 @@
+MySQL-python==1.2.3
+Django==1.4.1
+django-extensions
+Babel
+BabelDjango
+django-mptt
+xlwt
+nosmsd
+django-reversion
+MySQLdb
+South

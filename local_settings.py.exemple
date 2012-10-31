@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+# encoding=utf-8
+# maintainer: Fadiga
+
+import os
+import settings
+
+DEBUG = True
+
+DB_PATH = os.path.join(settings.ROOT_DIR, 'zoza.sqlite')
+
+DATABASES = {'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': DB_PATH},
+    'smsd': {'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'zozasms',
+    'USER': 'zozasms',
+    'PASSWORD': 'zozasms'}}
+
+INSTALLED_APPS = settings.INSTALLED_APPS + ('django_extensions',)
+
+TIME_ZONE = 'Africa/Bamako'
+
+LANGUAGE_CODE = 'fr-fr'
+
+# change that one!
+SECRET_KEY = '___(:-/_\:-)__|@|@|@|@|__(:-/_\:-)___'
+
+TEMPLATE_DIRS = ()
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_SENDER = ""
+
+HOTLINE_NUMBER = "60004055"
+HOTLINE_EMAIL = ""
+USE_HTTPS = True
+
+USE_HTTPS = True
