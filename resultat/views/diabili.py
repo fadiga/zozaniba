@@ -42,6 +42,12 @@ def diabili(request):
 def getask(*args, **kwargs):
 
     data = {'asks': [ask.to_dict() for ask in
-                    QuestionReponse.objects.filter(is_amswer=False)]}
+                    QuestionReponse.objects.filter(is_amswer=False)],
+            'nbr_inbox': Inbox.objects.count(),
+            'nbr_send': SentItems.objects.count()}
 
     return   HttpResponse(json.dumps(data))
+
+def answer(request):
+
+    print  request.form.get('group_name', None)

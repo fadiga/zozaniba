@@ -1,6 +1,6 @@
 #header {
   position: relative;
-  width: 955px;
+  width: 1100px;
   height: 50px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.77);
   background: none repeat scroll 0 0 #FFFFFF;
@@ -11,12 +11,13 @@ body {
   height: 100%;
 }
 #page {
-  width: 955px;
+  width: 1100px;
   background-color: #ffffff;
   margin: auto;
   margin-top: 0;
   padding: 0;
   border-top: 0;
+  box-shadow: 0px 0px 5px 4px skyblue;
 }
 #logo {
   left: 30px;
