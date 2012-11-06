@@ -2,7 +2,7 @@
 
 import re
 
-from zozaniba.resultat.models import *
+from zozaniba.resultat.models import QuestionReponse
 
 from datetime import date, datetime, timedelta
 

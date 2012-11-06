@@ -21,6 +21,7 @@ function addJQ_ask_list() {
             $("#ask_list").append(row);
         });
     add_JQ_();
+    send_JQ_answer();
     });
 
 }
@@ -28,7 +29,8 @@ function addJQ_ask_list() {
 function add_JQ_() {
     $("#ask_list li a").click(function() {
         var ask_id = $(this).attr('ask-id');
-        // var ask_name = $(this).("#ask-id").attr();
+        // var ask_name = $(this).("#ask-id").text();
+        // alert(ask_id);
         $("#ask-amswer").html(ask_id);
         $(".mess" + ask_id).remove();
         $(this).remove();
@@ -38,7 +40,6 @@ function add_JQ_() {
 function declencherTraitements() {
     alert("10");
 }
-
 
 function search_in_google(){
      // var ask = $(this).attr('search-google');
@@ -50,16 +51,17 @@ function search_in_google(){
     }, true);
 }
 
-function get_JQ_addressbook_new_group() {
-    $("#add_group_btn").click(function() {
-        group_name =  $("#id_reponse").val();
+function send_JQ_answer() {
+    $("#send_btn").click(function() {
+        answer =  $("#id_reponse").val();
+        // var ask_id =  $("#ask-amswer").val();
+        // alert(ask_id);
         $("#id_reponse").val("");
-        $.post('diabili/answer/'+group_name, function(data) {
-            display_alert(data.return, data.return_html, 2);
-            // refresh_group_list();
+        $.post('answer/' + answer, function(data) {
+               display_alert(data.return, data.return_html, 2);
+        dabili_init();
         }, "json");
     });
-    refresh_nbr();
 }
 
 function refresh_nbr() {
