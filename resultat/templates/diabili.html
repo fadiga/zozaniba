@@ -7,9 +7,11 @@
         <div> <strong>Reçue: </strong> <span id='nbr_inbox'> </span></div>
         <div class="row-fluid">
             <div class="span4 well">
-                <ul id="ask_list" class="nav nav-list">
+                <ul class="nav nav-list">
                     <li class="nav-header">Reception</li>
                     <li class="divider"></li>
+                </ul>
+                <ul id="ask_list" class="nav nav-list">
                 </ul>
             </div>
             <div class="span8">
@@ -26,12 +28,19 @@
 
             <div class=" well">
                 <ul id="groups" class="nav nav-list">
-                        <div id = "name_div"> 
-                              <body style="font-family: Arial;border: 0 none;">
-                                <div id="cse" style="width:80%;">Loading...</div>
-                              </body>
-                        </div>
-                    </form>
+                    <center>
+                    <FORM method=GET action="http://www.google.fr/search">
+                    <TABLE bgcolor="#FFFFFF"><tr><td>
+                    <A HREF="http://www.google.fr">
+                    <IMG SRC="http://www.google.com/logos/Logo_40wht.gif" border="0"
+                    ALT="Google" align="absmiddle"></A>
+                    <INPUT TYPE=text name=q size=31 maxlength=255 value="">
+                    <INPUT TYPE=hidden name=hl value=fr>
+                    <INPUT type=submit name=btnG VALUE="Recherche Google">
+                    </td></tr></TABLE>
+                    </FORM>
+                    </center>
+                    <!-- Google --> 
                 </ul>
             </div> 
             <div><strong>Repondu: </strong><span id='nbr_send'> </span></div>
@@ -59,6 +68,5 @@
     $(document).ready(function(){
         dabili_init();
     });
-    search_in_google();
 </script>
  {% endblock %}

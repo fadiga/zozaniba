@@ -8,8 +8,7 @@ function dabili_init() {
 
     addJQ_ask_list();
     refresh_nbr();
-    // var pe = new PeriodicalExecuter();
-    // pe.initialize(declencherTraitements, 10);
+    setInterval("refresh()", 5000); // Répète la fonction toutes les 50 sec
 
 }
 
@@ -26,40 +25,27 @@ function addJQ_ask_list() {
 
 }
 
+function del_ask_list() {
+
+    $("#ask_list").children('li').remove();
+
+}
+
 function add_JQ_() {
     $("#ask_list li a").click(function() {
         var ask_id = $(this).attr('ask-id');
-        // var ask_name = $(this).("#ask-id").text();
-        // alert(ask_id);
         $("#ask-amswer").html(ask_id);
         $(".mess" + ask_id).remove();
         $(this).remove();
     });
 }
 
-function declencherTraitements() {
-    alert("10");
-}
-
-function search_in_google(){
-     // var ask = $(this).attr('search-google');
-     // google.load("search", ask)
-
-    google.load('search', '1');
-    google.setOnLoadCallback(function(){
-      new google.search.CustomSearchControl().draw('cse');
-    }, true);
-}
-
 function send_JQ_answer() {
     $("#send_btn").click(function() {
         answer =  $("#id_reponse").val();
-        // var ask_id =  $("#ask-amswer").val();
-        // alert(ask_id);
         $("#id_reponse").val("");
         $.post('answer/' + answer, function(data) {
                display_alert(data.return, data.return_html, 2);
-        dabili_init();
         }, "json");
     });
 }
@@ -69,4 +55,11 @@ function refresh_nbr() {
         $("#nbr_inbox").html(data.nbr_inbox);
         $("#nbr_send").html(data.nbr_send);
     });
+}
+
+
+function refresh() {
+    refresh_nbr();
+    del_ask_list();
+    addJQ_ask_list();
 }

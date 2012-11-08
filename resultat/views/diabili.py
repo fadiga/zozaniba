@@ -39,7 +39,7 @@ class DiabiliForm(forms.ModelForm):
         return forms.ModelForm.save(self, *args, **kwargs)
 
 
-def diabili(request):
+def diabili(request, *args, **kwargs):
 
     context = {"category": 'diabili'}
 
@@ -47,6 +47,11 @@ def diabili(request):
 
     context.update({"nonresponse": nonresponse})
     form = DiabiliForm(request, request.POST)
+
+    print "iittttttttttttttttttiiii"
+    if request.method == "POST":
+        form = DiabiliForm(request, request.POST)
+        print "hhhhhhh"
 
     context.update({'form': form})
     return render(request, 'diabili.html', context)
@@ -59,42 +64,9 @@ def getask(*args, **kwargs):
             'nbr_inbox': Inbox.objects.count(),
             'nbr_send': SentItems.objects.count()}
 
-    return   HttpResponse(json.dumps(data))
+    return HttpResponse(json.dumps(data))
 
 
 def answer(request):
     print "iiiiiiiiiiiiiiiii"
-    answer = request.form.get('answer', None)
-
-    print answer
-    data = {}
-    subst = {'group': answer}
-
-    if not answer:
-        dict_return(data, WARNING, u"Veuillez saisir un nom de groupe",
-                    message_html=u"Veuillez saisir un nom de"
-                                 u"<strong> groupe</strong>.")
-
-        return HttpResponse(json.dumps(data))
-
-    try:
-        ask_anw = QuestionReponse(name=answer)
-        ask_anw.save()
-        dict_return(data, SUCCESS,
-                    u"%(group)s a été ajouté avec succès." % subst,
-                    message_html=u"<strong>%(group)s</strong> "
-                                 u"a été ajouté avec succès." % subst)
-    except sqlite3.IntegrityError:
-        dict_return(data, INFO,
-                    u"%(group)s existe déjà." % subst,
-                    message_html=u"<strong>%(group)s</strong> existe déjà."
-                                 % subst)
-    except Exception as e:
-        subst.update({'err': e.message})
-        dict_return(data, ERROR,
-                    u"Impossible d'enregistrer le groupe %(group)s : %(err)r" % subst,
-                    message_html=u"Impossible d'enregistrer le groupe "
-                                 u"<strong>%(group)s</strong><br />"
-                                 u"<em>%(err)r</em>" % subst)
-
-    return HttpResponse(json.dumps(data))
+    # answer = request.form.get('answer', None)
