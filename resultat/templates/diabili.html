@@ -46,11 +46,11 @@
             <div><strong>Repondu: </strong><span id='nbr_send'> </span></div>
             <div class="row-fluid"> 
                 <div id="contact_info"class="span8">
-                    <form action="" method="post" id="add_client">{% csrf_token %} {{ formset.management_form }}
+                    <form action="" method="post" id="answer" >{% csrf_token %} {{ formset.management_form }} 
                         <div id = "name_div">
                             <ul class="nav nav-list">
                                 <li class="nav-header" placeholder="Nom du groupe"> {{form.reponse.label_tag}} {{form.reponse}} {{form.Reponse.errors}}</li>
-                            <div  id="send_btn"><button class="btn btn-small" type="button">Envoyer</button>
+                            <div  id="send_btn"><input class= "buttons" id="answer" type="submit" value="Repondre"/>
                             </div>
                         </div> 
                     </form>

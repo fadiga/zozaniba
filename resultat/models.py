@@ -29,7 +29,6 @@ class Candidat(models.Model):
     birth_date = models.DateField(verbose_name="Date de naissance")
     sex = models.CharField(max_length=30, verbose_name=(u"Sexe:"),\
                                              choices=SEX, default=F)
-    
 
     def __unicode__(self):
         return u"%s %s" % (self.last_name, self.ecole)
@@ -58,7 +57,6 @@ class Examan(models.Model):
 
 
 class QuestionReponse(models.Model):
-
 
     question = models.TextField(verbose_name=(u"Question:"))
     reponse = models.TextField(blank=True, null=True, verbose_name="Reponse:")

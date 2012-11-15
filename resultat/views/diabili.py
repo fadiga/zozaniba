@@ -46,12 +46,10 @@ def diabili(request, *args, **kwargs):
     nonresponse = QuestionReponse.objects.filter(is_amswer=False)
 
     context.update({"nonresponse": nonresponse})
-    form = DiabiliForm(request, request.POST)
+    form = DiabiliForm(request)
 
-    print "iittttttttttttttttttiiii"
     if request.method == "POST":
-        form = DiabiliForm(request, request.POST)
-        print "hhhhhhh"
+        print request.POST.values()
 
     context.update({'form': form})
     return render(request, 'diabili.html', context)
@@ -60,7 +58,7 @@ def diabili(request, *args, **kwargs):
 def getask(*args, **kwargs):
 
     data = {'asks': [ask.to_dict() for ask in
-                    QuestionReponse.objects.filter(is_amswer=False)],
+                     QuestionReponse.objects.filter(is_amswer=False)],
             'nbr_inbox': Inbox.objects.count(),
             'nbr_send': SentItems.objects.count()}
 
@@ -68,5 +66,39 @@ def getask(*args, **kwargs):
 
 
 def answer(request):
-    print "iiiiiiiiiiiiiiiii"
-    # answer = request.form.get('answer', None)
+
+    if request.method == "POST":
+        answer = request.form.get('answer', None)
+        print answer
+
+    data = {}
+    subst = {'group': answer}
+
+    if not answer:
+        dict_return(data, WARNING, u"Veuillez saisir un nom de groupe",
+                    message_html=u"Veuillez saisir un nom de"
+                                 u"<strong> groupe</strong>.")
+
+        return HttpResponse(json.dumps(data))
+
+    try:
+        ask_anw = QuestionReponse(name=answer)
+        ask_anw.save()
+        dict_return(data, SUCCESS,
+                    u"%(group)s a été ajouté avec succès." % subst,
+                    message_html=u"<strong>%(group)s</strong> "
+                                 u"a été ajouté avec succès." % subst)
+    except sqlite3.IntegrityError:
+        dict_return(data, INFO,
+                    u"%(group)s existe déjà." % subst,
+                    message_html=u"<strong>%(group)s</strong> existe déjà."
+                                 % subst)
+    except Exception as e:
+        subst.update({'err': e.message})
+        dict_return(data, ERROR,
+                    u"Impossible d'enregistrer le groupe %(group)s : %(err)r" % subst,
+                    message_html=u"Impossible d'enregistrer le groupe "
+                                 u"<strong>%(group)s</strong><br />"
+                                 u"<em>%(err)r</em>" % subst)
+
+    return HttpResponse(json.dumps(data))

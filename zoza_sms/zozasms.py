@@ -71,7 +71,7 @@ def resp_error(message, action):
 
 
 def save_error(message, action):
-    message.respond(u"[ERREUR] %s"  % action)
+    message.respond(u"[ERREUR] %s" % action)
     return True
 
 
@@ -87,7 +87,7 @@ def resultat(message, args, sub_cmd, cmd):
     except:
         msg = ''
 
-    message.respond(u"[SUCCES] ")
+    message.respond(u"[SUCCES] %s" % msg)
     return True
 
 

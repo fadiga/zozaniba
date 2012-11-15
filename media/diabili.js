@@ -20,7 +20,7 @@ function addJQ_ask_list() {
             $("#ask_list").append(row);
         });
     add_JQ_();
-    send_JQ_answer();
+    // send_JQ_answer();
     });
 
 }
@@ -34,6 +34,7 @@ function del_ask_list() {
 function add_JQ_() {
     $("#ask_list li a").click(function() {
         var ask_id = $(this).attr('ask-id');
+        
         $("#ask-amswer").html(ask_id);
         $(".mess" + ask_id).remove();
         $(this).remove();
@@ -44,9 +45,9 @@ function send_JQ_answer() {
     $("#send_btn").click(function() {
         answer =  $("#id_reponse").val();
         $("#id_reponse").val("");
-        $.post('answer/' + answer, function(data) {
-               display_alert(data.return, data.return_html, 2);
-        }, "json");
+        // $.post('/diabili/', {'answer': answer}, function(data) {
+        //        display_alert(data.return, data.return_html, 2);
+        // }, "json");
     });
 }
 
@@ -56,7 +57,6 @@ function refresh_nbr() {
         $("#nbr_send").html(data.nbr_send);
     });
 }
-
 
 function refresh() {
     refresh_nbr();
