@@ -27,7 +27,7 @@ def dict_return(data, level, message, message_html=None):
         data.update({'return_html': message_html})
 
 
-class DiabiliForm(forms.ModelForm):
+class jaabiliForm(forms.ModelForm):
 
     class Meta:
         model = QuestionReponse
@@ -39,20 +39,20 @@ class DiabiliForm(forms.ModelForm):
         return forms.ModelForm.save(self, *args, **kwargs)
 
 
-def diabili(request, *args, **kwargs):
+def jaabili(request, *args, **kwargs):
 
-    context = {"category": 'diabili'}
+    context = {"category": 'jaabili'}
 
     nonresponse = QuestionReponse.objects.filter(is_amswer=False)
 
     context.update({"nonresponse": nonresponse})
-    form = DiabiliForm(request)
+    form = jaabiliForm(request)
 
     if request.method == "POST":
         print request.POST.values()
 
     context.update({'form': form})
-    return render(request, 'diabili.html', context)
+    return render(request, 'jaabili.html', context)
 
 
 def getask(*args, **kwargs):

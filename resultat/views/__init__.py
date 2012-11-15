@@ -4,4 +4,4 @@
 
 from dashboard import dashboard
 from home import home
-from diabili import diabili, getask, answer
+from jaabili import jaabili, getask, answer

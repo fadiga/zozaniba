@@ -4,7 +4,7 @@ Soft: Zozaniba
 
 */
 
-function dabili_init() {
+function jaabili_init() {
 
     addJQ_ask_list();
     refresh_nbr();
@@ -13,7 +13,7 @@ function dabili_init() {
 }
 
 function addJQ_ask_list() {
-    $.getJSON('/diabili/getask', function(data) {
+    $.getJSON('/jaabili/getask', function(data) {
         $.each(data.asks, function(num, ask) {
             row = "<li class='mess" + ask.id+"'"+">" + "De " + ask.num_phone  + ' a (' + ask.date +') ' +
                   "</li>" + "<li><a href='#' ask-id=" + ask.id + ">" + ask.question + "</a></li>";
@@ -45,14 +45,14 @@ function send_JQ_answer() {
     $("#send_btn").click(function() {
         answer =  $("#id_reponse").val();
         $("#id_reponse").val("");
-        // $.post('/diabili/', {'answer': answer}, function(data) {
+        // $.post('/jaabili/', {'answer': answer}, function(data) {
         //        display_alert(data.return, data.return_html, 2);
         // }, "json");
     });
 }
 
 function refresh_nbr() {
-    $.getJSON('/diabili/getask', function(data){
+    $.getJSON('/jaabili/getask', function(data){
         $("#nbr_inbox").html(data.nbr_inbox);
         $("#nbr_send").html(data.nbr_send);
     });
