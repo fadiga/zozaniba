@@ -12,7 +12,7 @@ from django import forms
 
 
 from nosmsd.models import Inbox, SentItems
-from resultat.models import QuestionReponse
+from resultat.models import Question, Amswer
 
 SUCCESS = u'success'
 INFO = u'info'
@@ -30,7 +30,7 @@ def dict_return(data, level, message, message_html=None):
 class jaabiliForm(forms.ModelForm):
 
     class Meta:
-        model = QuestionReponse
+        model = Question
 
     def __init__(self, request, *args, **kwargs):
         forms.ModelForm.__init__(self, *args, **kwargs)
@@ -43,7 +43,7 @@ def jaabili(request, *args, **kwargs):
 
     context = {"category": 'jaabili'}
 
-    nonresponse = QuestionReponse.objects.filter(is_amswer=False)
+    nonresponse = Question.objects.filter(status=Question.C)
 
     context.update({"nonresponse": nonresponse})
     form = jaabiliForm(request)
@@ -58,7 +58,7 @@ def jaabili(request, *args, **kwargs):
 def getask(*args, **kwargs):
 
     data = {'asks': [ask.to_dict() for ask in
-                     QuestionReponse.objects.filter(is_amswer=False)],
+                     Question.objects.filter(status=Question.C)],
             'nbr_inbox': Inbox.objects.count(),
             'nbr_send': SentItems.objects.count()}
 
@@ -82,7 +82,7 @@ def answer(request):
         return HttpResponse(json.dumps(data))
 
     try:
-        ask_anw = QuestionReponse(name=answer)
+        ask_anw = Question(name=answer)
         ask_anw.save()
         dict_return(data, SUCCESS,
                     u"%(group)s a été ajouté avec succès." % subst,

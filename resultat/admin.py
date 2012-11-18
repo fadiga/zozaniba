@@ -5,7 +5,7 @@
 
 from django.contrib import admin
 
-from models import (Candidat, Examan, Ecole, QuestionReponse)
+from models import (Candidat, Examan, Ecole, Question, Amswer)
 
 
 class EcoletAdmin(admin.ModelAdmin):
@@ -18,22 +18,28 @@ class CandidatAdmin(admin.ModelAdmin):
 
 
 class ExamanAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'num_place', 'type_ex', 
+    list_display = ('__unicode__', 'num_place', 'type_ex',
                     'date_session', 'annee_scol')
 
 
-class QuestionReponseAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'date', 'question', 
-                    'reponse', 'num_phone', 'is_amswer')
+class AmswerAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'user', 'date',
+                    'question', 'texte')
+
+
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'date', 'question',
+                    'num_phone', 'status')
     fieldsets = [
         (None,               {'fields': ['date']}),
         (u'Numéro de téléphone', {'fields': ['num_phone']}),
-        ('Reponse', {'fields': ['reponse']}),
         ('Question', {'fields': ['question']}),
-        ('None', {'fields': ['is_amswer']}),
+        ('None', {'fields': ['status']}),
     ]
+
 
 admin.site.register(Examan, ExamanAdmin)
 admin.site.register(Ecole, EcoletAdmin)
 admin.site.register(Candidat, CandidatAdmin)
-admin.site.register(QuestionReponse, QuestionReponseAdmin)
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Amswer, AmswerAdmin)

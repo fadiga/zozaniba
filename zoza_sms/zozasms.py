@@ -2,7 +2,7 @@
 
 import re
 
-from zozaniba.resultat.models import QuestionReponse
+from zozaniba.resultat.models import Question
 
 from datetime import date, datetime, timedelta
 
@@ -96,11 +96,11 @@ def ask_amswer(message, args, sub_cmd, cmd):
             z q num_place
             example: z q bresil a eu combien de coupe du monde"""
 
-    qr = QuestionReponse()
+    qr = Question()
     qr.question = args
     qr.date = datetime.now()
     qr.num_phone = message.identity
-    qr.is_amswer = False
+    qr.status = Question.C
     qr.save()
     print qr
 

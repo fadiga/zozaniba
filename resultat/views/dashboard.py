@@ -3,11 +3,6 @@
 # maintainer: Fadiga
 
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-
-
-from nosmsd.models import Inbox, SentItems
 
 
 def dashboard(request):
