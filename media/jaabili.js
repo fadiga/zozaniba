@@ -34,8 +34,7 @@ function del_ask_list() {
 function add_JQ_() {
     $("#ask_list li a").click(function() {
         var ask_id = $(this).attr('ask-id');
-        
-        $("#ask-amswer").html(ask_id);
+        $("#ask-amswer").html($(this).html());
         $(".mess" + ask_id).remove();
         $(this).remove();
     });

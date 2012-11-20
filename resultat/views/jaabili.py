@@ -30,7 +30,7 @@ def dict_return(data, level, message, message_html=None):
 class jaabiliForm(forms.ModelForm):
 
     class Meta:
-        model = Question
+        model = Amswer
 
     def __init__(self, request, *args, **kwargs):
         forms.ModelForm.__init__(self, *args, **kwargs)
